@@ -1,6 +1,7 @@
 var path = require('path')
 const express = require('express')
 const cors = require ('cors')
+const geoName = require('./geoNamesAPI.js')
 
 const app = express()
 app.use(cors())
@@ -14,11 +15,13 @@ app.listen(8082, function () {
     console.log('TripLeap app listening on port 8082!')
 })
 
-app.get('/tripInfo/:zc/:ld', infoForTrip);
+app.get('/tripInfo/:zc/:ld', geoName.getGeoLocation);
 
-async function infoForTrip (req, res){
+// app.get('/tripInfo/:zc/:ld', infoForTrip);
+
+/* async function infoForTrip (req, res){
   let zipCode = req.params.zc;
   let leavingDate = req.params.ld;
   console.log(zipCode, leavingDate);
   res.send('ok');
-}
+} */
