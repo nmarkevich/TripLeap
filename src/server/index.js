@@ -15,13 +15,5 @@ app.listen(8082, function () {
     console.log('TripLeap app listening on port 8082!')
 })
 
-app.get('/tripInfo/:zc/:ld', geoName.getGeoLocation);
+app.get('/tripInfo/:loc/:ld', geoName.getGeoLocation);
 
-// app.get('/tripInfo/:zc/:ld', infoForTrip);
-
-/* async function infoForTrip (req, res){
-  let zipCode = req.params.zc;
-  let leavingDate = req.params.ld;
-  console.log(zipCode, leavingDate);
-  res.send('ok');
-} */
