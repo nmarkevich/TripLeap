@@ -3,6 +3,7 @@ const express = require('express')
 const cors = require ('cors')
 const geoName = require('./geoNamesAPI.js')
 const weatherbit = require ('./weatherbitAPI.js')
+const res = require('express/lib/response')
 
 const app = express()
 app.use(cors())
@@ -16,6 +17,10 @@ app.listen(8082, function () {
     console.log('TripLeap app listening on port 8082!')
 })
 
-// app.get('/tripInfo/:loc/:ld', geoName.getGeoLocation);
-
-app.get('/tripInfo/:loc/:ld', weatherbit.getWeather);
+app.get('/tripInfo/:loc/:ld', function (req, res) {
+    const cityName = req.params.loc;
+    console.log(cityName);
+    geoName.getGeoLocation(cityName)
+        .then(results => weatherbit.getWeather(results.lat, results.lng))
+        .catch((err) => console.log(err));
+});
