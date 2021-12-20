@@ -1,8 +1,9 @@
 var path = require('path')
 const express = require('express')
-const cors = require ('cors')
+const cors = require('cors')
 const geoName = require('./geoNamesAPI.js')
-const weatherbit = require ('./weatherbitAPI.js')
+const weatherbit = require('./weatherbitAPI.js')
+const pixabay = require('./PixabayAPI.js')
 const res = require('express/lib/response')
 
 const app = express()
@@ -20,7 +21,9 @@ app.listen(8082, function () {
 app.get('/tripInfo/:loc/:ld', function (req, res) {
     const cityName = req.params.loc;
     console.log(cityName);
+
     geoName.getGeoLocation(cityName)
         .then(results => weatherbit.getWeather(results.lat, results.lng))
+        .then(() => pixabay.getImage(cityName))
         .catch((err) => console.log(err));
 });
