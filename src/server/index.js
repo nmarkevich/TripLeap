@@ -20,10 +20,11 @@ app.listen(8082, function () {
 
 app.get('/tripInfo/:loc/:ld', function (req, res) {
     const cityName = req.params.loc;
+    const leavingDate = req.params.ld;
     console.log(cityName);
 
     geoName.getGeoLocation(cityName)
-        .then(results => weatherbit.getWeather(results.lat, results.lng))
+        .then(results => weatherbit.getWeather(results.lat, results.lng, leavingDate))
         .then(() => pixabay.getImage(cityName))
         .catch((err) => console.log(err));
 });
