@@ -15,7 +15,6 @@ module.exports = {
       lng: json.geonames[0].lng,
       lat: json.geonames[0].lat,
     };
-    console.log(newData);
     return newData;
 }
 };

@@ -11,9 +11,6 @@ module.exports = {
     const differenceTime = tripDate.getTime() - today.getTime();
     // Calculate the no. of days between two dates, divide the time difference of both the dates by no. of milliseconds in a day
     const differenceDays = Math.round(differenceTime/(1000 * 3600 * 24));
-    console.log(today);
-    console.log(tripDate);
-    console.log(differenceDays);
     //  If the trip is within a week, you will get the current weather forecast. If the trip is in the future, you will get a predicted forecast.
     if(differenceDays > 7) {
       const url = "https://api.weatherbit.io/v2.0/forecast/daily?lat=" + lat + "&lon=" + lng + '&days=' + differenceDays + '&key=' + process.env.WEATHERBIT_API_KEY;
@@ -23,9 +20,7 @@ module.exports = {
       };
       const fetch_response = await fetch (url, requestOptions);
       const json = await fetch_response.json();
-      console.log(url);
-      console.log(json.data[differenceDays-1]);
-      return json.data[differenceDays-1];
+      return json.data[differenceDays-1].temp;
     }
     else {
       const url = "https://api.weatherbit.io/v2.0/current?lat=" + lat + "&lon=" + lng + '&key=' + process.env.WEATHERBIT_API_KEY;
@@ -35,9 +30,7 @@ module.exports = {
       };
       const fetch_response = await fetch (url, requestOptions);
       const json = await fetch_response.json();
-      console.log(url);
-      console.log(json);
-      return json;
-  }
+      return json.data[0].temp;
+    }
   }
 };

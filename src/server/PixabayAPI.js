@@ -11,7 +11,6 @@ module.exports = {
     };
     const fetch_response = await fetch (url, requestOptions);
     const json = await fetch_response.json();
-    console.log(json.hits[0]);
-    return json;
+    return json.hits[0].webformatURL;
   }
 };
