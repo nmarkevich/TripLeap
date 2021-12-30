@@ -39,7 +39,8 @@ app.get('/tripInfo/:loc/:ld', function (req, res) {
         .then(result => {
             trip.pic = result;
             tripsData.push(trip);
-            console.log(tripsData)
+            console.log(tripsData);
+            res.send(tripsData);
         })
         .catch((err) => console.log(err));
 });
