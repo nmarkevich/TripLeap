@@ -3,6 +3,14 @@ import './styles/footer.scss'
 import './styles/header.scss'
 export { handleSaveTrip }
 
+const saveButton = document.getElementById("add");
+const inputForm = document.getElementById("inputForm");
+const outputForm = document.getElementById("results");
+
+saveButton.addEventListener("click", () => {
+  inputForm.style.visibility="visible";
+})
+
 function handleSaveTrip(event) {
   let location = document.getElementById("location").value;
   let leavingDate = document.getElementById("leavingDate").value;
@@ -12,6 +20,9 @@ function handleSaveTrip(event) {
   getInfoForTrip(location, leavingDate)
     .then(results => updateUI(results));
   event.preventDefault();
+  results.style.visibility="visible";
+  document.getElementById("location").value = '';
+  getElementById("leavingDate").value = '';
 }
 
 //Get request to receive API calls result from the server
