@@ -37,11 +37,28 @@ const getInfoForTrip = async(loc, ld) => {
 function updateUI (tripsInfo) {
   try {
     console.log(tripsInfo);
+    let trip = document.createElement("div");
+    let tripInfo = document.createElement("div");
+    trip.id = "result";
+    tripInfo.id = "info";
+    let pic = document.createElement("img");
+    let city = document.createElement("div");
+    let startDate = document.createElement("div");
+    let weather = document.createElement("div");
 
-    document.getElementById("city").innerHTML = tripsInfo[0].city;
-    document.getElementById("startDate").innerHTML = tripsInfo[0].leavingDate;
-    document.getElementById("temp").innerHTML = tripsInfo[0].temp;
-    document.getElementById("pic").src = tripsInfo[0].pic;
+    for (let i=0; i < tripsInfo.length; i++) {
+
+      pic.src = tripsInfo[i].pic;
+      city.innerHTML = "Trip to: " + tripsInfo[i].city;
+      trip.appendChild(pic);
+      tripInfo.appendChild(city);
+      startDate.innerHTML = "Departing: " + tripsInfo[i].leavingDate;
+      tripInfo.appendChild(startDate);
+      weather.innerHTML = "Typical Weather for then is: " + tripsInfo[i].temp + "F";
+      tripInfo.appendChild(weather);
+      trip.appendChild(tripInfo);
+      outputForm.appendChild(trip);
+    }
   } catch (error) {
     console.log("error", error);
   }

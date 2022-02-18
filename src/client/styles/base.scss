@@ -48,12 +48,14 @@ input {
   border-radius: 5px;
 }
 
-#results {
+#result {
   display: flex;
+  padding: 20px;
 }
 
 #info {
   display: flex;
-  flex-direction: column;
   padding: 20px;
+  flex-direction: column;
+  // justify-content: space-between;
 }
