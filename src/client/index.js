@@ -3,12 +3,13 @@ import './styles/footer.scss'
 import './styles/header.scss'
 export { handleSaveTrip }
 
-const saveButton = document.getElementById("add");
+const addButton = document.getElementById("add");
 const inputForm = document.getElementById("inputForm");
 const outputForm = document.getElementById("outputForm");
 
-saveButton.addEventListener("click", () => {
+addButton.addEventListener("click", () => {
   inputForm.style.visibility="visible";
+  inputForm.style.display="flex";
 })
 
 function handleSaveTrip(event) {
@@ -36,10 +37,11 @@ const getInfoForTrip = async(loc, ld) => {
 function updateUI (tripsInfo) {
   try {
     console.log(tripsInfo);
+
     document.getElementById("city").innerHTML = tripsInfo[0].city;
     document.getElementById("startDate").innerHTML = tripsInfo[0].leavingDate;
     document.getElementById("temp").innerHTML = tripsInfo[0].temp;
-    document.getElementById("pic").innerHTML = tripsInfo[0].pic;
+    document.getElementById("pic").src = tripsInfo[0].pic;
   } catch (error) {
     console.log("error", error);
   }

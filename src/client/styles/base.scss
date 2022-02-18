@@ -47,3 +47,13 @@ input {
   margin: 30px;
   border-radius: 5px;
 }
+
+#results {
+  display: flex;
+}
+
+#info {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
