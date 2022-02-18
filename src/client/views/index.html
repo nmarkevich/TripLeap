@@ -22,16 +22,16 @@
                 <button class="button" id="add">Add trip</button>
             </section>
             
-            <section class="inputForm">
-                <form id="inputForm">
-                    <p>Enter the location you are traveling to and the date you are leaving</p>
+            <section id="inputForm">
+                <p>Enter the location you are traveling to and the date you are leaving</p>
+                <form class="form">
                     <input id="location" type="text" name="input" value="" placeholder="Put your destination here">
                     <input id="leavingDate" type="date" name="input" value="">
                     <input class="button" type="submit" name="" value="Save" onclick="return Client.handleSaveTrip(event)">
                 </form>
             </section>
 
-            <section class="outputForm">
+            <section id="outputForm">
                 <strong>The weather and the picture:</strong>
                 <div id="results">
                     <div id="city"></div>
