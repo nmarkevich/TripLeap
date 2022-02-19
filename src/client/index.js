@@ -15,16 +15,23 @@ addButton.addEventListener("click", () => {
 function handleSaveTrip(event) {
   let location = document.getElementById("location").value;
   let leavingDate = document.getElementById("leavingDate").value;
+  const validationMsg = document.getElementById("msg");
   console.log("Save Trip form submitted :::");
   console.log(location);
   console.log(leavingDate);
-  getInfoForTrip(location, leavingDate)
-    .then(results => updateUI(results));
-  event.preventDefault();
-  outputForm.style.visibility="visible";
-  document.getElementById("location").value = '';
-  document.getElementById("leavingDate").value = '';
-  inputForm.style.display="none";
+  if(location == "" || leavingDate == "") {
+    validationMsg.innerHTML = "Both fields are required";
+    validationMsg.style.color = "red";
+    event.preventDefault();
+  } else {
+    getInfoForTrip(location, leavingDate)
+      .then(results => updateUI(results));
+    event.preventDefault();
+    outputForm.style.visibility="visible";
+    document.getElementById("location").value = '';
+    document.getElementById("leavingDate").value = '';
+    inputForm.style.display="none";
+  }
 }
 
 //Get request to receive API calls result from the server
