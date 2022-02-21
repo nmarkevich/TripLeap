@@ -14,6 +14,7 @@ module.exports = {
     const newData = {
       lng: json.geonames[0].lng,
       lat: json.geonames[0].lat,
+      country: json.geonames[0].countryName
     };
     return newData;
 }

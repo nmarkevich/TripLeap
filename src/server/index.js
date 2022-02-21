@@ -24,13 +24,17 @@ app.listen(8082, function () {
 app.get('/tripInfo/:loc/:ld', function (req, res) {
     let trip = {
         city: req.params.loc,
+        country: '',
         leavingDate: req.params.ld,
         temp: '',
         pic: '',
     };
 
     geoName.getGeoLocation(trip.city)
-        .then(results => weatherbit.getWeather(results.lat, results.lng, trip.leavingDate))
+        .then(results => {
+            weatherbit.getWeather(results.lat, results.lng, trip.leavingDate);
+            trip.country = results.country;
+        })
         .then(result => {
             trip.temp = result;
             const img = pixabay.getImage(trip.city);

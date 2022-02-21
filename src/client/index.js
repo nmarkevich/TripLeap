@@ -56,7 +56,7 @@ function updateUI (tripsInfo) {
     for (let i=0; i < tripsInfo.length; i++) {
 
       pic.src = tripsInfo[i].pic;
-      city.innerHTML = "Trip to: " + tripsInfo[i].city;
+      city.innerHTML = "Trip to: " + tripsInfo[i].city + ', ' + tripsInfo[i].country;
       trip.appendChild(pic);
       tripInfo.appendChild(city);
       startDate.innerHTML = "Departing: " + tripsInfo[i].leavingDate;
