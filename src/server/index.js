@@ -32,8 +32,9 @@ app.get('/tripInfo/:loc/:ld', function (req, res) {
 
     geoName.getGeoLocation(trip.city)
         .then(results => {
-            weatherbit.getWeather(results.lat, results.lng, trip.leavingDate);
+            const weatherTemp = weatherbit.getWeather(results.lat, results.lng, trip.leavingDate);
             trip.country = results.country;
+            return weatherTemp;
         })
         .then(result => {
             trip.temp = result;
