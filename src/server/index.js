@@ -21,11 +21,12 @@ app.listen(8082, function () {
     console.log('TripLeap app listening on port 8082!')
 })
 
-app.get('/tripInfo/:loc/:ld', function (req, res) {
+app.get('/tripInfo/:loc/:ld/:days', function (req, res) {
     let trip = {
         city: req.params.loc,
         country: '',
         leavingDate: req.params.ld,
+        daysDiff: req.params.days,
         temp: '',
         pic: '',
     };

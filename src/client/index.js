@@ -15,18 +15,23 @@ addButton.addEventListener("click", () => {
 function handleSaveTrip(event) {
   let location = document.getElementById("location").value;
   let leavingDate = document.getElementById("leavingDate").value;
+  const returningDate = document.getElementById("returningDate").value;
   const validationMsg = document.getElementById("msg");
   console.log("Save Trip form submitted :::");
   console.log(location);
   console.log(leavingDate);
-  if(location == "" || leavingDate == "") {
-    validationMsg.innerHTML = "Both fields are required";
+  console.log(returningDate);
+  if(location == "" || leavingDate == "" || returningDate == "") {
+    validationMsg.innerHTML = "All fields are required";
     validationMsg.style.color = "red";
     event.preventDefault();
   } else {
-    getInfoForTrip(location, leavingDate)
-      .then(results => updateUI(results));
     event.preventDefault();
+    const timeDiff = new Date(returningDate).getTime() - new Date(leavingDate).getTime();
+    const length = timeDiff/(1000*60*60*24);
+    console.log("The trip duration: " + length);
+    getInfoForTrip(location, leavingDate, length)
+      .then(results => updateUI(results));
     outputForm.style.visibility="visible";
     document.getElementById("location").value = '';
     document.getElementById("leavingDate").value = '';
@@ -35,8 +40,8 @@ function handleSaveTrip(event) {
 }
 
 //Get request to receive API calls result from the server
-const getInfoForTrip = async(loc, ld) => {
-  const res = await fetch(`http://localhost:8082/tripInfo/${loc}/${ld}`);
+const getInfoForTrip = async(loc, ld, days) => {
+  const res = await fetch(`http://localhost:8082/tripInfo/${loc}/${ld}/${days}`);
   const allTrips = res.json();
   return allTrips;
 }
@@ -51,6 +56,7 @@ function updateUI (tripsInfo) {
     let pic = document.createElement("img");
     let city = document.createElement("div");
     let startDate = document.createElement("div");
+    let daysDiff = document.createElement("div");
     let weather = document.createElement("div");
 
     for (let i=0; i < tripsInfo.length; i++) {
@@ -61,7 +67,9 @@ function updateUI (tripsInfo) {
       tripInfo.appendChild(city);
       startDate.innerHTML = "Departing: " + tripsInfo[i].leavingDate;
       tripInfo.appendChild(startDate);
-      weather.innerHTML = "Typical Weather for then is: " + tripsInfo[i].temp + "F";
+      daysDiff.innerHTML = "Length of the trip: " + tripsInfo[i].daysDiff + " days";
+      tripInfo.appendChild(daysDiff);
+      weather.innerHTML = "Typical Weather for then is: " + tripsInfo[i].temp + " F";
       tripInfo.appendChild(weather);
       trip.appendChild(tripInfo);
       outputForm.appendChild(trip);
