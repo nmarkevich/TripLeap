@@ -17,6 +17,8 @@ function handleSaveTrip(event) {
   let leavingDate = document.getElementById("leavingDate").value;
   const returningDate = document.getElementById("returningDate").value;
   const validationMsg = document.getElementById("msg");
+  const timeDiff = new Date(returningDate).getTime() - new Date(leavingDate).getTime();
+  const length = timeDiff/(1000*60*60*24);
   console.log("Save Trip form submitted :::");
   console.log(location);
   console.log(leavingDate);
@@ -25,10 +27,12 @@ function handleSaveTrip(event) {
     validationMsg.innerHTML = "All fields are required";
     validationMsg.style.color = "red";
     event.preventDefault();
+  } else if(length < 0) {
+    validationMsg.innerHTML = "Leaving date should be earlier than returning date";
+    validationMsg.style.color = "red";
+    event.preventDefault();
   } else {
     event.preventDefault();
-    const timeDiff = new Date(returningDate).getTime() - new Date(leavingDate).getTime();
-    const length = timeDiff/(1000*60*60*24);
     console.log("The trip duration: " + length);
     getInfoForTrip(location, leavingDate, length)
       .then(results => updateUI(results));
@@ -58,8 +62,16 @@ function updateUI (tripsInfo) {
     let startDate = document.createElement("div");
     let daysDiff = document.createElement("div");
     let weather = document.createElement("div");
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
     for (let i=0; i < tripsInfo.length; i++) {
+
+      const tripDate = new Date(tripsInfo[i].leavingDate);
+    // Calculate the time difference between the leaving date and today
+      const differenceTime = tripDate.getTime() - today.getTime();
+    // Calculate the number of days between two dates
+      const differenceDays = Math.round(differenceTime/(1000 * 3600 * 24));
 
       pic.src = tripsInfo[i].pic;
       city.innerHTML = "Trip to: " + tripsInfo[i].city + ', ' + tripsInfo[i].country;
@@ -69,8 +81,13 @@ function updateUI (tripsInfo) {
       tripInfo.appendChild(startDate);
       daysDiff.innerHTML = "Length of the trip: " + tripsInfo[i].daysDiff + " days";
       tripInfo.appendChild(daysDiff);
-      weather.innerHTML = "Typical Weather for then is: " + tripsInfo[i].temp + " F";
-      tripInfo.appendChild(weather);
+      if (differenceDays > 16) {
+        weather.innerHTML = "Typical Weather for then is: " + tripsInfo[i].temp + " F" + " (This is a forecast of the 16th day)";
+        tripInfo.appendChild(weather);
+      } else {
+        weather.innerHTML = "Typical Weather for then is: " + tripsInfo[i].temp + " F";
+        tripInfo.appendChild(weather);
+      }
       trip.appendChild(tripInfo);
       outputForm.appendChild(trip);
     }
