@@ -1,7 +1,6 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   min-height: 100vh;
   font-family: 'Oxygen', Sans-Serif;
 }
@@ -10,6 +9,11 @@ body {
   display: flex;
   justify-content: center;
 }
+
+/*.Main #inputForm {
+  display: flex;
+  align-items: center;
+}*/
 
 input {
   font-size: 18px;
@@ -30,11 +34,19 @@ input {
   flex-direction: column;
   background-color: #ebf4fa;
   border: 1px solid #545454;
-  width: 50%;
+  width: 75%;
   padding: 20px;
   margin: 30px;
   border-radius: 5px;
   visibility: hidden;
+}
+
+.form div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40%;
+  padding: 5px;
 }
 
 #outputForm {

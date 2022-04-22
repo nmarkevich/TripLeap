@@ -24,13 +24,19 @@
       <section id="inputForm">
         <p>Enter the location you are traveling to and the date you are leaving</p>
         <form class="form">
-          <label>Destination</label>
-          <input id="location" type="text" name="input" value="" placeholder="Put your destination here">
-          <label>Leaving Date</label>
-          <input id="leavingDate" type="date" name="input" value="">
-          <label>Returning Date</label>
-          <input id="returningDate" type="date" name="input" value="">
-          <input class="button" type="submit" name="" value="Save" onclick="return Client.handleSaveTrip(event)">
+          <div>
+            <label>Destination</label>
+            <input id="location" type="text" name="input" value="" placeholder="Put your destination here">
+          </div>
+          <div>          
+            <label>Leaving Date</label>
+            <input id="leavingDate" type="date" name="input" value="">
+          </div>
+          <div>
+            <label>Returning Date</label>
+            <input id="returningDate" type="date" name="input" value="">
+          </div>
+            <input class="button" type="submit" name="" value="Save" onclick="return Client.handleSaveTrip(event)">
           <div id="msg"></div>
         </form>
       </section>
