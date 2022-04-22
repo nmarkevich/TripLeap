@@ -14,7 +14,11 @@ module.exports = {
       method: 'GET',
       redirect: 'follow'
     };
-    const fetch_response = await fetch (url, requestOptions);
+    let fetch_response = await fetch (url, requestOptions);
+    if (fetch_response.size == 0) {
+      const url = "https://pixabay.com/api/?key=" + process.env.PIXABAY_API_KEY + "&q=" + "trip" + "&image_type=photo";
+      fetch_response = await fetch (url, requestOptions);
+    }
     const json = await fetch_response.json();
     return json.hits[0].webformatURL;
   }
