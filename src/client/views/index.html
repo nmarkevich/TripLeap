@@ -1,54 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>TripLeap</title>
-    </head>
+  <head>
+      <meta charset="utf-8">
+      <title>TripLeap</title>
+  </head>
 
-    <body>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="./src/client/images/logo.jpg">
+      </div>
+      <div class="Banner">
+        <img src="./src/client/images/banner.jpg">
+      </div>
+    </header>
 
-        <header>
-            <div class="logo">
-                <img src="./src/client/images/logo.jpg">
-            </div>
-            <div class="Banner">
-                <img src="./src/client/images/banner.jpg">
-            </div>
-        </header>
+    <main>
+      <section class="initialView">
+        <h2>Let's plan your next trip!</h2>
+        <button class="button" id="add">Add trip</button>
+      </section>
 
-        <main>
-            <section class="initialView">
-                <h2>Let's plan your next trip!</h2>
-                <button class="button" id="add">Add trip</button>
-            </section>
-            
-            <section id="inputForm">
-                <p>Enter the location you are traveling to and the date you are leaving</p>
-                <form class="form">
-                    <label>Destination</label>
-                    <input id="location" type="text" name="input" value="" placeholder="Put your destination here">
-                    <label>Leaving Date</label>
-                    <input id="leavingDate" type="date" name="input" value="">
-                    <label>Returning Date</label>
-                    <input id="returningDate" type="date" name="input" value="">
-                    <input class="button" type="submit" name="" value="Save" onclick="return Client.handleSaveTrip(event)">
-                    <div id="msg"></div>
-                </form>
-            </section>
+      <section id="inputForm">
+        <p>Enter the location you are traveling to and the date you are leaving</p>
+        <form class="form">
+          <label>Destination</label>
+          <input id="location" type="text" name="input" value="" placeholder="Put your destination here">
+          <label>Leaving Date</label>
+          <input id="leavingDate" type="date" name="input" value="">
+          <label>Returning Date</label>
+          <input id="returningDate" type="date" name="input" value="">
+          <input class="button" type="submit" name="" value="Save" onclick="return Client.handleSaveTrip(event)">
+          <div id="msg"></div>
+        </form>
+      </section>
 
-            <section id="outputForm">
-                <h2>Planned Trips:</h2>
-                </div>
-            </section>
-        </main>
+      <section id="outputForm">
+        <h2>Planned Trips:</h2>
+      </section>
+    </main>
 
-        <footer>
-            <p>My other projects can be found</p>
-            <a href="https://github.com/nmarkevich">Here</a>
-        </footer>
-
-        <script>
-
-        </script>
-    </body>
+    <footer>
+      <p>My other projects can be found</p>
+      <a href="https://github.com/nmarkevich">Here</a>
+    </footer>
+  </body>
 </html>

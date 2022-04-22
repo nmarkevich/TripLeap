@@ -3,6 +3,13 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 module.exports = {
+  /**
+   * @description API call to get temperature for a given longitude, latitude and a date
+   * @param {string} lat 
+   * @param {string} lng 
+   * @param {string} leavingDate 
+   * @returns Temperature 
+   */
   getWeather : async function (lat, lng, leavingDate) {
     const today = new Date();
     today.setHours(0, 0, 0, 0);

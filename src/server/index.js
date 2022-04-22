@@ -18,35 +18,35 @@ let tripsData = [];
 
 // designates what port the app will listen to for incoming requests
 app.listen(8082, function () {
-    console.log('TripLeap app listening on port 8082!')
+  console.log('TripLeap app listening on port 8082!')
 })
 
 app.get('/tripInfo/:loc/:ld/:days', function (req, res) {
-    let trip = {
-        city: req.params.loc,
-        country: '',
-        leavingDate: req.params.ld,
-        daysDiff: req.params.days,
-        temp: '',
-        pic: '',
-    };
+  let trip = {
+    city: req.params.loc,
+    country: '',
+    leavingDate: req.params.ld,
+    daysDiff: req.params.days,
+    temp: '',
+    pic: '',
+  };
 
-    geoName.getGeoLocation(trip.city)
-        .then(results => {
-            const weatherTemp = weatherbit.getWeather(results.lat, results.lng, trip.leavingDate);
-            trip.country = results.country;
-            return weatherTemp;
-        })
-        .then(result => {
-            trip.temp = result;
-            const img = pixabay.getImage(trip.city);
-            return img;
-        })
-        .then(result => {
-            trip.pic = result;
-            tripsData.push(trip);
-            console.log(tripsData);
-            res.send(tripsData);
-        })
-        .catch((err) => console.log(err));
+  geoName.getGeoLocation(trip.city)
+    .then(results => {
+      const weatherTemp = weatherbit.getWeather(results.lat, results.lng, trip.leavingDate);
+      trip.country = results.country;
+      return weatherTemp;
+    })
+    .then(result => {
+      trip.temp = result;
+      const img = pixabay.getImage(trip.city);
+      return img;
+    })
+    .then(result => {
+      trip.pic = result;
+      tripsData.push(trip);
+      console.log(tripsData);
+      res.send(tripsData);
+    })
+    .catch((err) => console.log(err));
 });

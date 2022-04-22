@@ -2,6 +2,11 @@ import app from './displayInfo'
 
 const outputForm = document.getElementById("outputForm");
 
+
+/**
+ * @description Get the data from the form, calls getInfoForTrip to get the info about a trip and calls updateUI to show info to a user
+ * @param {*} event
+ */
 function handleSaveTrip(event) {
   let location = document.getElementById("location").value;
   let leavingDate = document.getElementById("leavingDate").value;
@@ -33,7 +38,13 @@ function handleSaveTrip(event) {
   }
 }
 
-//Get request to receive API calls result from the server
+/**
+ * @description Sends the data from user to the server and receives the list of all trips
+ * @param {string} loc
+ * @param {string} ld
+ * @param {string} days
+ * @return {array} The list of all trips saved on the server
+ */
 const getInfoForTrip = async(loc, ld, days) => {
   const res = await fetch(`http://localhost:8082/tripInfo/${loc}/${ld}/${days}`);
   const allTrips = res.json();

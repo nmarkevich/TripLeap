@@ -1,3 +1,8 @@
+
+/**
+  * @description Shows all saved trips on UI
+ * @param {Array} tripsInfo
+ */
 function updateUI (tripsInfo) {
   try {
     console.log(tripsInfo);
