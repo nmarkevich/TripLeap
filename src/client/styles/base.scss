@@ -32,9 +32,9 @@ input {
 #inputForm {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #ebf4fa;
   border: 1px solid #545454;
-  width: 75%;
   padding: 20px;
   margin: 30px;
   border-radius: 5px;
@@ -58,6 +58,10 @@ input {
   padding: 20px;
   margin: 30px;
   border-radius: 5px;
+}
+
+label {
+  
 }
 
 #result {
