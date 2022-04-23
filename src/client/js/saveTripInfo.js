@@ -9,6 +9,7 @@ const outputForm = document.getElementById("outputForm");
  */
 function handleSaveTrip(event) {
   let location = document.getElementById("location").value;
+  location.replace(/\s/g, '+');
   let leavingDate = document.getElementById("leavingDate").value;
   const returningDate = document.getElementById("returningDate").value;
   const validationMsg = document.getElementById("msg");
@@ -34,6 +35,7 @@ function handleSaveTrip(event) {
     outputForm.style.visibility="visible";
     document.getElementById("location").value = '';
     document.getElementById("leavingDate").value = '';
+    document.getElementById("returningDate").value = '';
     inputForm.style.display="none";
   }
 }
