@@ -15,11 +15,12 @@ module.exports = {
       redirect: 'follow'
     };
     let fetch_response = await fetch (url, requestOptions);
-    if (fetch_response.size == 0) {
+    let json = await fetch_response.json();
+    if (json.totalHits == 0) {
       const url = "https://pixabay.com/api/?key=" + process.env.PIXABAY_API_KEY + "&q=" + "trip" + "&image_type=photo";
       fetch_response = await fetch (url, requestOptions);
+      json = await fetch_response.json();
     }
-    const json = await fetch_response.json();
     return json.hits[0].webformatURL;
   }
 };
