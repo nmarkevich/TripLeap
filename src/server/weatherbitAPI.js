@@ -37,7 +37,7 @@ module.exports = {
       };
       const fetch_response = await fetch (url, requestOptions);
       const json = await fetch_response.json();
-      if(differenceDays > 7 & differenceDays <= 17) {
+      if(differenceDays > 7 & differenceDays <= 16) {
         return json.data[differenceDays-1].temp;
       }
       return json.data[15].temp;

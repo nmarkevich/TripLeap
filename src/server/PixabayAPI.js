@@ -21,6 +21,9 @@ module.exports = {
       fetch_response = await fetch (url, requestOptions);
       json = await fetch_response.json();
     }
-    return json.hits[0].webformatURL;
+      const randomIndex = Math.floor(Math.random() * json.hits.length);
+      console.log(randomIndex);
+      console.log(json);
+    return json.hits[randomIndex].webformatURL;
   }
 };
