@@ -32,7 +32,7 @@ function handleSaveTrip(event) {
     console.log("The trip duration: " + length);
     getInfoForTrip(location, leavingDate, length)
       .then(results => app.updateUI(results));
-    outputForm.style.visibility="visible";
+    outputForm.style.display="flex";
     document.getElementById("location").value = '';
     document.getElementById("leavingDate").value = '';
     document.getElementById("returningDate").value = '';
